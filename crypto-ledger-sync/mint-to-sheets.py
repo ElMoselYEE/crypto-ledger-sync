@@ -34,11 +34,9 @@ SHEETS_CELL_RESERVES = os.environ.get('SHEETS_CELL_RESERVES', 'E58')
 
 def main():
     mint = get_mint_client()
-
-    totals = tabulate_portfolio_totals(mint.get_accounts())
-
     sheets = get_sheets_client()
 
+    totals = tabulate_portfolio_totals(mint.get_accounts())
     write_totals_to_sheets(sheets, totals)
 
     mint.close()
