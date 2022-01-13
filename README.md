@@ -27,7 +27,6 @@ This code allows Blayne to perform the following syncing operations:
        docker run -v $PWD/data:/data crypto-ledger-sync python3 /crypto-ledger-sync/zen-to-cointracking.py
 
 
-
 # Deploy (Scheduled Jobs)
 
 Only jobs that are to be scheduled should be deployed, otherwise we can just
