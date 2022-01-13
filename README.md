@@ -1,9 +1,9 @@
 This code allows Blayne to perform the following syncing operations:
 
-* Crypto.com → Mint (cdc-to-mint.py)
-* ZenLedger → CoinTracking (zen-to-cointracking.py)
-* CoinTracking → Mint (cointracking-to-mint.py)
-* Mint → Sheets (mint-to-sheets.py)
+* Crypto.com → Mint ([cdc-to-mint.py](crypto-ledger-sync/cdc-to-mint.py))
+* ZenLedger → CoinTracking ([zen-to-cointracking.py](crypto-ledger-sync/zen-to-cointracking.py))
+* CoinTracking → Mint ([cointracking-to-mint.py](crypto-ledger-sync/cointracking-to-mint.py))
+* Mint → Sheets ([mint-to-sheets.py](crypto-ledger-sync/mint-to-sheets.py))
 
 # Running
 

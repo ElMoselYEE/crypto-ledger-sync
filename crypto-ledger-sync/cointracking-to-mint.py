@@ -8,8 +8,7 @@ import sys
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-# e.g. https://cointracking.info/ajax/portfolio_current_balance.php?portfolio=12345678901234567812&fiat=0
-COINTRACKER_DATA_URL = os.environ.get('COINTRACKER_DATA_URL')
+COINTRACKING_PORTFOLIO_ID = os.environ.get('COINTRACKING_PORTFOLIO_ID')
 MINT_USERNAME = os.environ.get('MINT_USERNAME')
 MINT_PASSWORD = os.environ.get('MINT_PASSWORD')
 MFA_METHOD = os.environ.get('MFA_METHOD')
@@ -102,7 +101,8 @@ def map_currency(currency):
 def get_cointracking_portfolio_data():
     logging.info("Downloading from CoinTracking")
 
-    coin_data = json.loads(requests.get(COINTRACKER_DATA_URL).text)
+    url = f"https://cointracking.info/ajax/portfolio_current_balance.php?portfolio={COINTRACKING_PORTFOLIO_ID}&fiat=0"
+    coin_data = json.loads(requests.get(url).text)
 
     portfolio = {}
 
