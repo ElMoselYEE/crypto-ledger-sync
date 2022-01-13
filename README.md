@@ -16,10 +16,17 @@ This code allows Blayne to perform the following syncing operations:
        lpass show crypto-ledger-sync-env --notes > .env
 
 3. Run the jobs you're interested in e.g.
+      
+       # Mint to Sheets
+       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/mint-to-sheets.py
 
-       docker run \
-         --env-file=.env \
-         crypto-ledger-sync python3 /crypto-ledger-sync/mint-to-sheets.py
+       # CoinTracking to Mint
+       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/cointracking-to-mint.py
+
+       # ZenLedger to CoinTracking
+       docker run -v $PWD/data:/data crypto-ledger-sync python3 /crypto-ledger-sync/zen-to-cointracking.py
+
+
 
 # Deploy (Scheduled Jobs)
 
