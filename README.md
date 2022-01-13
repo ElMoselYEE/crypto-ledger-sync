@@ -26,6 +26,10 @@ This code allows Blayne to perform the following syncing operations:
        # ZenLedger to CoinTracking
        docker run -v $PWD/data:/data crypto-ledger-sync python3 /crypto-ledger-sync/zen-to-cointracking.py
 
+       # Crypto.com to Mint
+       docker run -it -v $PWD/data:/data --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/mint-extract-categories.py
+       docker run -it -v $PWD/data:/data --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/cdc-to-mint.py
+
 
 # Deploy (Scheduled Jobs)
 
