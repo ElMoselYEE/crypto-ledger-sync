@@ -1,0 +1,3 @@
+gspread
+df2gspread
+oauth2client
