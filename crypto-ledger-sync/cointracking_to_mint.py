@@ -1,3 +1,4 @@
+import mint_client
 import mintapi
 import json
 import requests
@@ -9,17 +10,13 @@ import sys
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 COINTRACKING_PORTFOLIO_ID = os.environ.get('COINTRACKING_PORTFOLIO_ID')
-MINT_USERNAME = os.environ.get('MINT_USERNAME')
-MINT_PASSWORD = os.environ.get('MINT_PASSWORD')
-MFA_METHOD = os.environ.get('MFA_METHOD')
-MFA_TOKEN = os.environ.get('MFA_TOKEN')
 MINT_CRYPTO_ACCOUNT_PREFIX = os.environ.get('MINT_CRYPTO_ACCOUNT_PREFIX')
 
 
 def main():
     portfolio = get_cointracking_portfolio_data()
 
-    mint = get_mint_client()
+    mint = mint_client.get_mint_client()
     accounts = get_slimmed_accounts(mint)
 
     for account_name in accounts.keys():
@@ -30,19 +27,6 @@ def main():
             if ticker in portfolio:
                 new_value = float(portfolio[ticker])
                 update_account_value(mint, cur_account, new_value)
-
-
-def get_mint_client():
-    logging.info(f"Connecting to Mint [username={MINT_USERNAME} | mfa_method={MFA_METHOD}]")
-
-    return mintapi.Mint(
-        MINT_USERNAME,
-        MINT_PASSWORD,
-        mfa_method=MFA_METHOD,
-        mfa_token=MFA_TOKEN,
-        headless=True,
-        use_chromedriver_on_path=True
-    )
 
 
 def get_slimmed_accounts(mint):

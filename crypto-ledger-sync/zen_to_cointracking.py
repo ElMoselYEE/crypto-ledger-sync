@@ -68,8 +68,6 @@ def parse_transaction_data(transaction):
         txn_id
     ) = transaction
 
-
-
     if kind in ['trade', 'buy', 'sell']:
         output['type'] = 'Trade'
     if kind in ['Receive']:

@@ -1,16 +1,13 @@
 import gspread
 import os
 import mintapi
+import mint_client
 from oauth2client.service_account import ServiceAccountCredentials
 import logging
 import sys
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-MINT_USERNAME = os.environ.get('MINT_USERNAME')
-MINT_PASSWORD = os.environ.get('MINT_PASSWORD')
-MFA_METHOD = os.environ.get('MFA_METHOD')
-MFA_TOKEN = os.environ.get('MFA_TOKEN')
 CREDENTIAL_KEYFILE = os.environ.get('CREDENTIAL_KEYFILE')
 SHEETS_SPREADSHEET_NAME = os.environ.get('SHEETS_NAME', 'Moseley Investing Strategy')
 SHEETS_WORKSHEET_NAME = os.environ.get('SHEETS_WORKSHEET_NAME', "Over Time")
@@ -33,7 +30,7 @@ SHEETS_CELL_RESERVES = os.environ.get('SHEETS_CELL_RESERVES', 'E58')
 
 
 def main():
-    mint = get_mint_client()
+    mint = mint_client.get_mint_client()
     sheets = get_sheets_client()
 
     totals = tabulate_portfolio_totals(mint.get_accounts())
@@ -66,19 +63,6 @@ def get_sheets_client():
     ]
     creds = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIAL_KEYFILE, scopes)
     return gspread.authorize(creds)
-
-
-def get_mint_client():
-    logging.info(f"Connecting to Mint [username={MINT_USERNAME} | mfa_method={MFA_METHOD}]")
-
-    return mintapi.Mint(
-        MINT_USERNAME,
-        MINT_PASSWORD,
-        mfa_method=MFA_METHOD,
-        mfa_token=MFA_TOKEN,
-        headless=True,
-        use_chromedriver_on_path=True
-    )
 
 
 def tabulate_portfolio_totals(accounts):
