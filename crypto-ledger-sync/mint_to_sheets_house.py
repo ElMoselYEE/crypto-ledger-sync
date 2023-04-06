@@ -5,10 +5,12 @@ import mint_client
 from oauth2client.service_account import ServiceAccountCredentials
 import logging
 import sys
+import json
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-CREDENTIAL_KEYFILE = os.environ.get('CREDENTIAL_KEYFILE')
+GOOGLE_CREDENTIALS = os.environ.get('GOOGLE_CREDENTIALS')
+
 SHEETS_SPREADSHEET_NAME = os.environ.get('SHEETS_NAME', 'Moseley Investing Strategy')
 SHEETS_WORKSHEET_NAME = os.environ.get('SHEETS_WORKSHEET_NAME', "New House")
 
@@ -43,7 +45,7 @@ def get_sheets_client():
         'https://www.googleapis.com/auth/spreadsheets',
         'https://www.googleapis.com/auth/drive'
     ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIAL_KEYFILE, scopes)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(GOOGLE_CREDENTIALS), scopes)
     return gspread.authorize(creds)
 
 
