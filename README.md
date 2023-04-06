@@ -18,7 +18,7 @@ This code allows Blayne to perform the following syncing operations:
 3. Run the jobs you're interested in e.g.
       
        # Mint to Sheets
-       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/mint_to_sheets.py
+       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/mint_to_sheets_house.py
 
        # CoinTracking to Mint
        docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/cointracking_to_mint.py
