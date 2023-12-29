@@ -1,4 +1,4 @@
 gspread
 df2gspread
-oauth2client
-git+https://github.com/ElMoselYEE/mintapi@main
+google-auth
+monarchmoney
