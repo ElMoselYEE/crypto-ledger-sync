@@ -9,7 +9,6 @@ import asyncio
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-CREDENTIAL_KEYFILE = os.environ.get('CREDENTIAL_KEYFILE')
 GOOGLE_CREDENTIALS = os.environ.get('GOOGLE_CREDENTIALS')
 SHEETS_SPREADSHEET_NAME = os.environ.get('SHEETS_NAME', 'Moseley Investing Strategy')
 SHEETS_WORKSHEET_NAME = os.environ.get('SHEETS_WORKSHEET_NAME', "Over Time")
