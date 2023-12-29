@@ -16,9 +16,12 @@ The crypto operations are shelved.
 
 3. Run the jobs you're interested in e.g.
       
-       # Mint to Sheets (New House)
-       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/mint_to_sheets_house.py
+       # Monarch to Sheets
+       docker run --env-file=.env crypto-ledger-sync python3 /crypto-ledger-sync/monarch_to_sheets.py
 
+# Upload Edited Env File
+
+      cat .env | lpass edit --non-interactive --notes crypto-ledger-sync-env
 
 # Deploy (Scheduled Jobs)
 
